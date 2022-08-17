@@ -7,3 +7,9 @@ z: 0
 
 # PREGAME countdown delay in seconds
 pregameDelay: 10
+
+#World players need to be in to participate in game
+gameWorld: world
+
+#Minimum amount of players needed for a game (needs to be at least 2)
+minPlayerAmount: 4
