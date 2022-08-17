@@ -1,0 +1,13 @@
+name: CastleSiege
+version: '${project.version}'
+main: me.lifelessnerd.castlesiege.CastleSiege
+api-version: 1.19
+authors: [ LifelessNerd ]
+description: Minigame plugin based on KDB minigame
+website: github.com/LifelessNerd
+commands:
+  siege:
+    description: All commands regarding the CastleSiege plugin
+    usage: /siege <start/stop>
+    aliases:
+      - castlesiege
