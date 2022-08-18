@@ -1,9 +1,10 @@
 # CastleSiege plugin configuration
 
 # PREGAME lobby location
-x: 0
-y: 64
-z: 0
+pregamelobby:
+  x: 0
+  y: 64
+  z: 0
 
 # PREGAME countdown delay in seconds
 pregameDelay: 10
@@ -13,3 +14,21 @@ gameWorld: world
 
 #Minimum amount of players needed for a game (needs to be at least 2)
 minPlayerAmount: 4
+
+# Game team 1 spawn location
+teamOneSpawn:
+  x: 50
+  y: 64
+  z: 0
+# Game team 2 spawn location
+teamTwoSpawn:
+  x: -50
+  y: 64
+  z: 0
+
+#Whether kings selection should prefer players provided
+kingPrefer: false
+
+kingPreferPlayers:
+  teamOneKing: LifelessNerd
+  teamTwoKing: goldapplegod

@@ -37,7 +37,7 @@ public class StartCommand extends Subcommand {
     @Override
     public boolean perform(Player player, String[] args) {
 
-        player.sendMessage("Game starting!");
+        player.sendMessage("Attempting to start the game...");
         gameManager.setGameState(GameState.STARTING);
 
         return true;
