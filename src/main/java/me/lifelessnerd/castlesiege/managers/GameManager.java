@@ -49,6 +49,7 @@ public class GameManager {
                 if (!(gameState == GameState.STARTING)){
                     return; }
                 // Pregame > Starting code
+                // TODO: Give kit selection item, Allow Kit selection
                 CountdownTimer timer = new CountdownTimer(plugin, 10,
                         () -> MyUtils.broadcastGroup(gamePlayers, "&eGame starts in 10 seconds!"),
                         () -> {
@@ -56,6 +57,7 @@ public class GameManager {
                             if (checkStartRequirements()){
                                 MyUtils.broadcastGroup(gamePlayers, "&eGame starting!");
                                 setGameState(GameState.RUNNING); // Does this nested thing work?
+
                                 startGameLogic();
                             } else this.gameState = previous;
                         });
