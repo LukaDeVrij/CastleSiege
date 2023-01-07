@@ -4,10 +4,16 @@ import me.lifelessnerd.castlesiege.CastleSiege;
 import me.lifelessnerd.castlesiege.files.KitItemsConfig;
 import me.lifelessnerd.castlesiege.pregame.CountdownTimer;
 import me.lifelessnerd.castlesiege.utils.MyUtils;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextColor;
 import org.bukkit.*;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -94,26 +100,17 @@ public class GameManager {
                     plugin.getConfig().getDouble("teamTwoSpawn.y"),
                     plugin.getConfig().getDouble("teamTwoSpawn.z"));
 
-            // Give items to the players
-            FileConfiguration fileConfiguration = KitItemsConfig.get();
-            List<ItemStack> kitItems = (List<ItemStack>) fileConfiguration.get("items");
-
+            // Givekit  items to the players and reset all properties of players
             for (Player player : gamePlayers){
-                for (int index = 0; index < kitItems.size(); index++) {
-                    ItemStack item = kitItems.get(index);
-                    if (item == null) {
-                        item = new ItemStack(Material.AIR);
-                    }
-                    player.getInventory().setItem(index, item);
-                    ItemStack helmet = fileConfiguration.getItemStack("items.helmet");
-                    player.getInventory().setHelmet(helmet);
-                    ItemStack chestplate = fileConfiguration.getItemStack("kits.chestplate");
-                    player.getInventory().setChestplate(chestplate);
-                    ItemStack leggings = fileConfiguration.getItemStack("kits.leggings");
-                    player.getInventory().setLeggings(leggings);
-                    ItemStack boots = fileConfiguration.getItemStack("kits.boots");
-                    player.getInventory().setBoots(boots);
-                }
+
+                // Kit Item
+                ItemStack kitItem = new ItemStack(Material.BOW, 1);
+                ItemMeta kitItemMeta = kitItem.getItemMeta();
+                kitItemMeta.displayName(Component.text("Kit Selection").color(TextColor.color(100, 255, 100)));
+                kitItemMeta.addEnchant(Enchantment.DURABILITY, 1, true);
+                kitItemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                kitItemMeta.getPersistentDataContainer().set(new NamespacedKey(plugin, "Kit Selection Item"), PersistentDataType.STRING, "true");
+                kitItem.setItemMeta(kitItemMeta);
 
                 player.setHealth(20);
                 player.addPotionEffect(new PotionEffect(PotionEffectType.SATURATION, 1, 20));
